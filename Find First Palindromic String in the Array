@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool palindromic(string str) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        int n = str.size();
+        int i {0}, j {n - 1};
+        string sub_str = str;
+        while (i < j) {
+            swap(str[i], str[j]);
+            ++i;
+            --j;
+        }
+        if (str == sub_str) {
+            return true;
+        }
+        return false;
+    }
+    string firstPalindrome(vector<string>& words) {
+        for (auto str : words) {
+            if (palindromic(str)) {
+                return str;
+                break;
+            } 
+        }
+        return "";
+        
+    }
+};
