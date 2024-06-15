@@ -1,0 +1,49 @@
+Cách 1: Dùng two pointers
+class Solution {
+public:
+    int arithmeticTriplets(vector<int>& nums, int diff) {
+        int count = 0;
+    int n = nums.size();
+
+    for (int i = 0; i < n - 2; ++i) {
+        int j = i + 1;
+        int k = j + 1;
+
+        // Find valid j and k using two pointers
+        while (j < n - 1 && k < n) {
+            if (nums[j] - nums[i] < diff) {
+                ++j;
+            } else if (nums[j] - nums[i] > diff) {
+                break;
+            } else if (nums[k] - nums[j] < diff) {
+                ++k;
+            } else if (nums[k] - nums[j] > diff) {
+                ++j;
+                k = j + 1;
+            } else {
+                ++count;
+                ++j;
+                k = j + 1;
+            }
+        }
+    }
+
+    return count;
+    }
+};
+
+Cách 2: Dùng unordered_set
+// count trong unordered_set dùng để kiểm tra một phần tử có xuất hiện trong tập hay không, nếu có trả về 1, nếu không trả về 0.
+class Solution {
+public:
+    int arithmeticTriplets(vector<int>& nums, int diff) {
+        unordered_set<int> numSet(nums.begin(), nums.end());
+        int count {0};
+        for (int num : nums) {
+            if (numSet.count(num + diff) && numSet.count(num + diff * 2)) {
+                ++count;
+            }
+        }
+        return count;
+    }
+};
