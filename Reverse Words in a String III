@@ -1,0 +1,42 @@
+Cách dùng Two pointers:
+class Solution {
+public:
+    string reverseWords(string s) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+
+        int n = s.size();
+        int start {0};
+        for (int end = 0; end <= n; ++end) {
+            if (s[end] == ' ' || end == n) {
+                reverse(s.begin() + start, s.begin() + end);
+                start = end + 1;
+            }
+            
+        }
+        return s;
+    }
+};
+
+Không dùng two pointers:
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        string word;
+        string result;
+        stringstream ss(s);
+        while (getline(ss, word, ' ')) {
+            reverse(word.begin(), word.end());
+            if (!result.empty()) {
+                result += " ";
+            }
+            result += word;
+        }
+        return result;
+    }
+};
