@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> diStringMatch(string s) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        int left {0}, right = s.size();
+        vector<int> result;
+        for (char & c : s) {
+            if (c == 'I') {
+                result.emplace_back(left);
+                ++left;
+            } else {
+                result.emplace_back(right);
+                --right;
+            }
+        }
+        result.emplace_back(left);
+        return result;
+    }
+};
