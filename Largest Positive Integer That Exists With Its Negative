@@ -1,0 +1,39 @@
+Cách 1: SỬ dụng two pointers O(nlogn)
+class Solution {
+public:
+    int findMaxK(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        sort(nums.begin(), nums.end());
+        int left = 0, right = nums.size() - 1;
+        while (left < right) {
+            if (nums[left] + nums[right] == 0) {
+                return nums[right];
+            } else if (nums[left] + nums[right] > 0) {
+                --right;
+            } else {
+                ++left;
+            }
+        }
+        return -1;
+    }
+};
+Cách 2: Dùng unordered_set O(n)
+class Solution {
+public:
+    int findMaxK(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        unordered_set<int> set_num;
+        int max_num = -1;
+        for (int num : nums) {
+            if (set_num.find(-num) != set_num.end()) {
+                max_num = max(max_num, abs(num));
+            }
+            set_num.insert(num);
+        }
+        return max_num;
+    }
+};
