@@ -1,0 +1,14 @@
+// Để ý rằng dãy chỉ gồm a và b thì cần tối đa 2 bước để làm rỗng nó.
+class Solution {
+public:
+    int removePalindromeSub(string s) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        string rev_s = s;
+        reverse(rev_s.begin(), rev_s.end());
+        if (rev_s == s) {
+            return 1;
+        } else return 2;
+    }
+};
