@@ -1,0 +1,24 @@
+Do dãy đã được sắp xếp theo thứ tự không giảm, nên giá trị tuyệt đối của số sẽ lớn nhất ở gần đầu và cuối
+Two pointers O(n)
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        int n = nums.size();
+        vector<int> result(n);
+        int left = 0, right = n - 1, index = n - 1;
+        while (left <= right) {
+            if (abs(nums[left]) > abs(nums[right])) {
+                result[index] = pow(nums[left], 2);
+                ++left;
+            } else {
+                result[index] = pow(nums[right], 2);
+                --right;
+            }
+            --index;
+        }
+        return result;
+    }
+};
