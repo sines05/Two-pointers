@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>> mergeArrays(vector<vector<int>>& nums1, vector<vector<int>>& nums2) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
+        int i = 0, j = 0;
+        vector<vector<int>> result;
+        while (i < nums1.size() && j < nums2.size()) {
+            if (nums1[i][0] < nums2[j][0]) {
+                result.emplace_back(nums1[i]);
+                ++i;
+            } else if (nums1[i][0] > nums2[j][0]) {
+                result.emplace_back(nums2[j]);
+                ++j;
+            } else {
+                result.emplace_back(vector<int>({nums1[i][0], nums1[i][1] + nums2[j][1]}));
+                ++i;
+                ++j;
+            }
+        }
+        while (i < nums1.size()) {
+                result.emplace_back(nums1[i]);
+                ++i;
+            }
+        while (j < nums2.size()) {
+                result.emplace_back(nums2[j]);
+                ++j;
+            }
+        return result;
+    }
+};
