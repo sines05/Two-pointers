@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> shortestToChar(string s, char c) {
+        int n = s.size();
+        vector<int> result(n, n);
+        int left = 0, right = n - 1;
+        int prev = -n;
+        while (left < n) {
+            if (s[left] == c) {
+                prev = left;
+                result[left] = left - prev;
+            } else {
+                result[left] = left - prev;
+            }
+            ++left;
+        }
+        prev = 2 * n;
+        while (right >= 0) {
+            if (s[right] == c) {
+                prev = right;
+                result[right] = min(result[right], prev - right);
+            } else {
+                result[right] = min(result[right], prev - right);
+            }
+            --right;
+        }
+        return result;
+    }
+};
